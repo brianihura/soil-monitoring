@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #121212; */
+    background-image: linear-gradient(rgba(8, 14, 10, 0.7),rgba(24, 34, 30, 0.8)), url(3.jpg);
+    color: #e0e0e0; /* Light text color for readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0; /* Remove default margin for consistent layout */
+    width: 100%; /* Make the body take up full width */
+    min-height: 100vh; /* Ensure it covers the full height of the viewport */
+}
+
+h1 {
+    margin-top: 20px;
+    color: #f4f4f9; /* Matching header text color */
+    font-size: 2rem;
+    width: 100%; /* Ensure it spans the full width */
+    text-align: center; /* Center the heading */
+}
+
+.chart-container {
+    width: 80%; /* Keep the chart container at 80% of the screen width */
+    max-width: 600px; /* Set a maximum width to maintain the original size */
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #1e1e1e; /* Darker container background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    box-sizing: border-box; /* Ensure padding does not affect width */
+}
+
+.nutrientchart {
+    color: aqua;
+    background-color: black;
+    width: 100%; /* Make it span the full width of its container */
+    text-align: center; /* Center-align text inside the chart */
+    padding: 5px; /* Add some spacing inside */
+    margin: 5px auto; /* Center the chart horizontally with auto margin */
+    border-radius: 5px; /* Rounded edges for a modern look */
+}
+
+header {
+    background-color: rgba(96, 190, 178, 0.9); /* Dark color with slight transparency */
+    padding: 10px 20px;
+    border-bottom: 4px solid rgba(255, 255, 255, 0.3); /* Subtle highlight */
+    display: flex; /* Use flexbox for header layout */
+    justify-content: space-between; /* Distribute space between the logo and nav */
+    align-items: center; /* Vertically align items */
+    font-size: 1.5rem;
+    color: #ffffff;
+    position: sticky; /* Keeps the header fixed at the top */
+    top: 0;
+    z-index: 10; /* Ensures the header stays above other content */
+    width: 100%; /* Ensure the header takes up the full width */
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    width: 50px; /* Adjust logo size */
+    height: auto;
+}
+
+header nav ul {
+    list-style-type: none; /* Remove default list style */
+    display: flex; /* Align list items horizontally */
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin-left: 20px; /* Space between the list items */
+}
+
+header a {
+    color: #f4f4f9; /* Light link color */
+    text-decoration: none; /* Remove underline from links */
+}
+
+header a:hover {
+    color: aqua; /* Highlight links on hover */
+    text-decoration: underline; /* Add underline on hover */
+}

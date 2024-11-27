@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="home.css">
+  <title>Soil Data Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header>
+        <div class="imgDiv">
+            <img src="images/logo.jpg" alt="logo not seen lol!">
+        </div>
+        <div class="navLinks">
+            <nav>
+                <ul>
+                    <li><a href="client.php">Home</a></li>
+                    <li><a href="suggest1.php">suggest</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+  <h1>Soil Data Dashboard</h1>
+
+  <div class="chart-container">
+    <canvas id="nutrientChart"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="moistureChart"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="temperatureChart"></canvas>
+  </div>
+
+  <script>
+    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+    // Initialize empty charts
+    const nutrientChart = new Chart(document.getElementById('nutrientChart'), {
+      type: 'line',
+      data: { labels: labels, datasets: [{ label: 'Nutrient Content (%)', data: [], borderColor: 'rgb(75, 192, 192)', backgroundColor: 'rgba(75, 192, 192, 0.2)', fill: true }] },
+      options: { responsive: true }
+    });
+    
+    const moistureChart = new Chart(document.getElementById('moistureChart'), {
+      type: 'line',
+      data: { labels: labels, datasets: [{ label: 'Moisture Content (%)', data: [], borderColor: 'rgb(54, 162, 235)', backgroundColor: 'rgba(54, 162, 235, 0.2)', fill: true }] },
+      options: { responsive: true }
+    });
+
+    const temperatureChart = new Chart(document.getElementById('temperatureChart'), {
+      type: 'line',
+      data: { labels: labels, datasets: [{ label: 'Temperature (°C)', data: [], borderColor: 'rgb(255, 99, 132)', backgroundColor: 'rgba(255, 99, 132, 0.2)', fill: true }] },
+      options: { responsive: true }
+    });
+
+    // Function to fetch sensor data from the server and update charts
+    async function fetchSensorData() {
+      try {
+        const response = await fetch('http://localhost:3000/getSensorData');
+        const data = await response.json();
+        
+        // Update the chart data
+        nutrientChart.data.datasets[0].data = data.nutrient;
+        moistureChart.data.datasets[0].data = data.moisture;
+        temperatureChart.data.datasets[0].data = data.temperature;
+        
+        // Refresh the charts to show new data
+        nutrientChart.update();
+        moistureChart.update();
+        temperatureChart.update();
+      } catch (error) {
+        console.error('Error fetching sensor data:', error);
+      }
+    }
+
+    // Fetch sensor data every 5 seconds
+    setInterval(fetchSensorData, 5000);
+  </script>
+</body>
+</html>
