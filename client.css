@@ -19,7 +19,6 @@ header {
   position: sticky; /* Keeps the header fixed at the top */
   top: 0;
   z-index: 10; /* Ensures the header stays above other content */
-  width: 100%; /* Ensure the header takes up the full width */
 }
 
 header .logo {

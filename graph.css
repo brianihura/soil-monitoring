@@ -7,7 +7,6 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0; /* Remove default margin for consistent layout */
-    width: 100%; /* Make the body take up full width */
     min-height: 100vh; /* Ensure it covers the full height of the viewport */
 }
 
@@ -52,17 +51,6 @@ header {
     position: sticky; /* Keeps the header fixed at the top */
     top: 0;
     z-index: 10; /* Ensures the header stays above other content */
-    width: 100%; /* Ensure the header takes up the full width */
-}
-
-header .logo {
-    display: flex;
-    align-items: center;
-}
-
-header .logo img {
-    width: 50px; /* Adjust logo size */
-    height: auto;
 }
 
 header nav ul {

@@ -13,15 +13,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Example of sensor data (replace with actual sensor input)
-$sensor_data = [
-    'nitrogen' => 70,     // NPK sensor reading for nitrogen
-    'phosphorus' => 50,   // NPK sensor reading for phosphorus
-    'potassium' => 60,    // NPK sensor reading for potassium
-    'moisture' => 80,     // Moisture sensor reading
-    'temperature' => 20   // Temperature sensor reading
-];
-
 // Query to fetch crop requirements
 $sql = "SELECT * FROM crop_requirements";
 $result = $conn->query($sql);
@@ -49,7 +40,7 @@ if ($result->num_rows > 0) {
 if (!empty($suitable_crops)) {
     echo "Suitable crops: " . implode(", ", $suitable_crops);
 } else {
-    echo "No suitable crops found for the current soil conditions.";
+    echo "soil is unhealty.";
 }
 
 // Close the database connection

@@ -20,6 +20,7 @@
                 <ul>
                     <li><a href="graph.php">Graph</a></li>
                     <li><a href="suggest1.php">Suggest</a></li>
+                    <li><a href="soilhealth.php">soil Health</a></li>
                 </ul>
             </nav>
         </div>

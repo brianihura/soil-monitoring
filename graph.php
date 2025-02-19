@@ -63,6 +63,7 @@ $conn->close();
                 <ul>
                     <li><a href="client.php">Home</a></li>
                     <li><a href="suggest1.php">suggest</a></li>
+                    <li><a href="soilhealth.php">soil Health</a></li>
 
                 </ul>
             </nav>
