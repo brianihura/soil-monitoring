@@ -55,9 +55,6 @@ $conn->close();
 </head>
 <body>
 <header>
-        <div class="imgDiv">
-            <img src="images/logo.jpg" alt="logo not seen lol!">
-        </div>
         <div class="navLinks">
             <nav>
                 <ul>

@@ -40,7 +40,7 @@ h1 {
 }
 
 header {
-    background-color: rgba(96, 190, 178, 0.9); /* Dark color with slight transparency */
+    background-color:  rgba(96, 190, 143, 0.9); /* Dark color with slight transparency */
     padding: 10px 20px;
     border-bottom: 4px solid rgba(255, 255, 255, 0.3); /* Subtle highlight */
     display: flex; /* Use flexbox for header layout */
@@ -51,7 +51,6 @@ header {
     position: sticky; /* Keeps the header fixed at the top */
     top: 0;
     z-index: 10; /* Ensures the header stays above other content */
-    width: 100%; /* Ensure the header takes up the full width */
 }
 
 header .logo {

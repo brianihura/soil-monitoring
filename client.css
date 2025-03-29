@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(rgba(5, 2, 8, 0.3),rgba(24, 34, 30, 0.8)), url(3.jpg);
+  /* background-image: linear-gradient(rgba(5, 2, 8, 0.3),rgba(24, 34, 30, 0.8)), url(3.jpg); */
   background-size: cover;
   background-position: center;
   margin: 0;
@@ -8,7 +8,7 @@ body {
 }
 
 header {
-  background-color: rgba(96, 190, 178, 0.9); /* Dark color with slight transparency */
+  background-color:  rgba(96, 190, 143, 0.9); /* Dark color with slight transparency */
   padding: 10px 20px;
   border-bottom: 4px solid rgba(255, 255, 255, 0.3); /* Subtle highlight */
   display: flex; /* Use flexbox for header layout */
@@ -19,6 +19,7 @@ header {
   position: sticky; /* Keeps the header fixed at the top */
   top: 0;
   z-index: 10; /* Ensures the header stays above other content */
+  width: 100%; /* Ensure the header takes up the full width */
 }
 
 header .logo {
@@ -62,7 +63,7 @@ header a:hover {
 }
 
 .temparature, .moisture, .npk {
-  background-color: rgba(30, 30, 30, 0.9); /* Consistent dark theme */
+  background-color: rgba(255, 255, 255, 0.9); /* Consistent dark theme */
   border-radius: 15px;
   padding: 20px;
   text-align: center;

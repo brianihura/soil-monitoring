@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="client.css">
+    <link rel="stylesheet" href="change.css">
     <title>Soil Monitoring</title>
 </head>
 <body>
@@ -12,9 +12,7 @@
 
     <!-- Content Section -->
     <header>
-        <div class="imgDiv">
-            <img src="" alt="Soil Health Monitoring">
-        </div>
+
         <div class="navLinks">
             <nav>
                 <ul>

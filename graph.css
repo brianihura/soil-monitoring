@@ -23,7 +23,7 @@ h1 {
     max-width: 600px; /* Set a maximum width to maintain the original size */
     margin: 20px 0;
     padding: 10px;
-    background-color: #1e1e1e; /* Darker container background */
+    background-color: #ffffff; /* Darker container background */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
     box-sizing: border-box; /* Ensure padding does not affect width */
@@ -40,7 +40,7 @@ h1 {
 }
 
 header {
-    background-color: rgba(96, 190, 178, 0.9); /* Dark color with slight transparency */
+    background-color:  rgba(96, 190, 143, 0.9); /* Dark color with slight transparency */
     padding: 10px 20px;
     border-bottom: 4px solid rgba(255, 255, 255, 0.3); /* Subtle highlight */
     display: flex; /* Use flexbox for header layout */

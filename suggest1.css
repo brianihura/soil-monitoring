@@ -1,0 +1,181 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background-color: #0d1a0c; */
+    background-image: linear-gradient(rgba(8, 14, 10, 0.8),rgba(24, 34, 30, 0.8)), url(3.jpg);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+header {
+    background-color: rgba(96, 190, 143, 0.9); /* Dark color with slight transparency */
+    padding: 10px 20px;
+    border-bottom: 4px solid rgba(255, 255, 255, 0.3); /* Subtle highlight */
+    display: flex; /* Use flexbox for header layout */
+    justify-content: space-between; /* Distribute space between the logo and nav */
+    align-items: center; /* Vertically align items */
+    font-size: 1.5rem;
+    color: #ffffff;
+    position: sticky; /* Keeps the header fixed at the top */
+    top: 0;
+    z-index: 10; /* Ensures the header stays above other content */
+}
+header nav ul {
+    list-style-type: none; /* Remove default list style */
+    display: flex; /* Align list items horizontally */
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin-left: 20px; /* Space between the list items */
+}
+
+header a {
+    color: #f4f4f9; /* Light link color */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+header a:hover {
+    color: aqua; /* Highlight links on hover */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+.container {
+    margin-top: 100px; /* Add top margin to avoid content being hidden under the fixed header */
+    width: 1000px; /* Increased container size */
+    background: #cabfbf; /* Bright background for contrast */
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Smoother edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Deeper shadow for better visuals */
+    padding: 40px; /* Increase padding for more breathing room */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.02); /* Subtle hover effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 32px; /* Larger font size for header */
+    color: #4CAF50;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    font-size: 20px; /* Slightly larger font size */
+    line-height: 1.8; /* Better readability */
+    margin-bottom: 20px;
+}
+
+p.success {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+p.error {
+    color: #F44336;
+    font-weight: bold;
+}
+
+p span {
+    font-weight: bold;
+}
+
+.table-container {
+    width: 100%;
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 15px; /* Larger padding for better spacing */
+    text-align: left;
+    font-size: 16px;
+}
+
+th {
+    background-color: #4CAF50; /* Highlight header rows */
+    color: black; /* White text for contrast */
+}
+
+td {
+    background-color: #ffffff;
+}
+
+td:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row shading */
+}
+
+ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+    font-size: 18px;
+    color: #555;
+}
+.machine {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    transition: transform 0.3s ease-in-out;
+}
+
+.machine:hover {
+    transform: scale(1.03);
+}
+
+.machine h2 {
+    color: #4CAF50;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.result {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    background: #f4f4f4;
+    padding: 12px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .machine {
+        width: 90%;
+        padding: 15px;
+    }
+    
+    .result {
+        font-size: 18px;
+        padding: 10px;
+    }
+}

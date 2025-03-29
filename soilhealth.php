@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soil Health Analysis</title>
     <header>
-    <div class="imgDiv">
-    </div>
     <div class="navLinks">
         <nav>
             <ul>
                 <li><a href="client.php">Home</a></li>
                 <li><a href="graph.php">Graph</a></li>
-                <li><a href="soilhealth.php">soil Health</a></li>
+                <li><a href="suggest1.php">suggest</a></li>
             </ul>
         </nav>
     </div>
@@ -24,6 +22,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
+            background-image: linear-gradient(rgba(8, 14, 10, 0.7),rgba(24, 34, 30, 0.8)), url(3.jpg);
         }
         .container {
             width: 50%;
@@ -75,7 +74,7 @@
             padding-left: 20px;
         }
         header {
-    background-color: rgba(96, 190, 178, 0.9); /* Dark color with slight transparency */
+    background-color:  rgba(96, 190, 143, 0.9); /* Dark color with slight transparency */
     padding: 10px 20px;
     border-bottom: 4px solid rgba(255, 255, 255, 0.3); /* Subtle highlight */
     display: flex; /* Use flexbox for header layout */

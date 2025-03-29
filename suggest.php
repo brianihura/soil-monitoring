@@ -1,48 +1,92 @@
 <?php
-// Database connection details
-$servername = "localhost";
-$username = "root";        // Default XAMPP MySQL username is "root"
-$password = "";            // Default password is empty
-$dbname = "soil_monitoring";  // Your database name
+// Execute Python script and capture output
+$command = escapeshellcmd("python ml.py");
+$output = shell_exec($command);
 
-// Create database connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Query to fetch crop requirements
-$sql = "SELECT * FROM crop_requirements";
-$result = $conn->query($sql);
-
-// Initialize a flag to indicate if any suitable crop is found
-$suitable_crops = [];
-
-if ($result->num_rows > 0) {
-    // Compare each crop's requirements to the sensor data
-    while ($row = $result->fetch_assoc()) {
-        // Check if the sensor data falls within the range for each nutrient and condition
-        if (
-            $sensor_data['nitrogen'] >= $row['nitrogen_min'] && $sensor_data['nitrogen'] <= $row['nitrogen_max'] &&
-            $sensor_data['phosphorus'] >= $row['phosphorus_min'] && $sensor_data['phosphorus'] <= $row['phosphorus_max'] &&
-            $sensor_data['potassium'] >= $row['potassium_min'] && $sensor_data['potassium'] <= $row['potassium_max'] &&
-            $sensor_data['moisture'] >= $row['moisture_min'] && $sensor_data['moisture'] <= $row['moisture_max'] &&
-            $sensor_data['temperature'] >= $row['temperature_min'] && $sensor_data['temperature'] <= $row['temperature_max']
-        ) {
-            $suitable_crops[] = $row['crop_name'];
-        }
-    }
-}
-
-// Check if suitable crops are found and display the result
-if (!empty($suitable_crops)) {
-    echo "Suitable crops: " . implode(", ", $suitable_crops);
+// Check for errors
+if ($output === null) {
+    $prediction = "Error: Unable to fetch prediction.";
 } else {
-    echo "soil is unhealty.";
+    $prediction = trim($output);
 }
 
-// Close the database connection
-$conn->close();
+?><?php
+// Run the Python script
+exec("python ml.py");
+
+// Read the output file
+$outputFile = "output.txt";
+
+if (file_exists($outputFile)) {
+    $prediction = file_get_contents($outputFile);
+} else {
+    $prediction = "Prediction not available";
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            margin: auto;
+            width: 50%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        .result {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Predicted Crop</h2>
+    <div class="result"><?php echo htmlspecialchars($prediction); ?></div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Health Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .result {
+            font-size: 24px;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Soil Health Monitoring System</h2>
+    <p>Predicted Crop Recommendation:</p>
+    <div class="result"><?php echo $prediction; ?></div>
+</body>
+</html>
