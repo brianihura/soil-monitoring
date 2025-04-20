@@ -1,0 +1,18 @@
+Received: {"nitrogen":"255","phosphorus":"240","potassium":"248"}
+Received: {"nitrogen":"255","phosphorus":"240","potassium":"248"}
+Received: {"nitrogen":"255","phosphorus":"240","potassium":"248"}
+Received: {"nitrogen":"255","phosphorus":"240","potassium":"248"}
+Received: {"nitrogen":"255","phosphorus":"240","potassium":"248"}
+Received: {"nitrogen":"255","phosphorus":"240","potassium":"248"}
+Received: []
+Received: []
+Received: []
+Received: []
+Received: []
+Received: []
+Received: []
+Received: []
+Received: []
+Received: []
+Received: []
+Received Data - Nitrogen: No data, Phosphorus: No data, Potassium: No data

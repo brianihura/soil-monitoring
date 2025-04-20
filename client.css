@@ -1,77 +1,98 @@
-body {
-  /* background-image: linear-gradient(rgba(5, 2, 8, 0.3),rgba(24, 34, 30, 0.8)), url(3.jpg); */
-  background-size: cover;
-  background-position: center;
-  margin: 0;
-  font-family: 'Arial', sans-serif; /* Clean font */
-  color: #ffffff; /* White text for contrast */
-}
-
-header {
-  background-color:  rgba(96, 190, 143, 0.9); /* Dark color with slight transparency */
-  padding: 10px 20px;
-  border-bottom: 4px solid rgba(255, 255, 255, 0.3); /* Subtle highlight */
-  display: flex; /* Use flexbox for header layout */
-  justify-content: space-between; /* Distribute space between the logo and nav */
-  align-items: center; /* Vertically align items */
-  font-size: 1.5rem;
-  color: #ffffff;
-  position: sticky; /* Keeps the header fixed at the top */
-  top: 0;
-  z-index: 10; /* Ensures the header stays above other content */
-  width: 100%; /* Ensure the header takes up the full width */
-}
-
-header .logo {
-  display: flex;
-  align-items: center;
-}
-
-header .logo img {
-  width: 50px; /* Adjust logo size */
-  height: auto;
-}
-
-header nav ul {
-  list-style-type: none; /* Remove default list style */
-  display: flex; /* Align list items horizontally */
+/* Reset default styles */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  background-color: #1a2b1f; /* Dark earthy green */
+}
+
+/* Background image with subtle green overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('3.jpg') center/cover no-repeat;
+  filter: brightness(30%) contrast(90%) saturate(70%);
+  z-index: -1;
+}
+
+/* Header */
+header {
+  background: linear-gradient(90deg, #1c3d1c, #2e5a2e); /* Deep green */
+  padding: 25px 35px;
+  border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.8rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+}
+
+/* Navigation */
+header nav ul {
+  list-style: none;
+  display: flex;
 }
 
 header nav ul li {
-  margin-left: 20px; /* Space between the list items */
+  margin-left: 25px;
 }
 
 header a {
-  color: #f4f4f9; /* Light link color */
-  text-decoration: none; /* Remove underline from links */
+  color: #e3b341; /* Golden yellow */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+  font-size: 1.3rem;
 }
 
 header a:hover {
-  color: aqua; /* Highlight links on hover */
-  text-decoration: underline; /* Add underline on hover */
+  color: #d18d24;
+  text-decoration: underline;
 }
 
+/* Main Grid */
 .mainview {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Set three columns */
-  gap: 70px; /* Increase gap between the items */
-  padding: 20px;
-  margin-top: 80px; /* Increase top margin */
-  backdrop-filter: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  padding: 40px;
+  margin-top: 100px;
 }
 
+/* Cards (Temperature, Moisture, NPK) */
 .temparature, .moisture, .npk {
-  background-color: rgba(255, 255, 255, 0.9); /* Consistent dark theme */
+  background: rgba(34, 54, 34, 0.9); /* Earthy green with slight transparency */
   border-radius: 15px;
   padding: 20px;
   text-align: center;
-  height: 40vh;
+  height: 50vh;
   width: 80%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease-in-out;
+  color: #ffffff;
 }
 
+.temparature:hover, .moisture:hover, .npk:hover {
+  transform: translateY(-5px);
+  background: rgba(45, 75, 45, 0.9);
+}
+
+/* NPK Box */
 .npk {
   display: flex;
   flex-direction: column;
@@ -79,58 +100,38 @@ header a:hover {
   align-items: center;
 }
 
+/* NPK Elements */
 .potassium, .phosphorous, .nitrogen {
   height: 10vh;
   width: 100%;
   margin: 10px 0;
-  background-color: rgba(30, 30, 30, 0.9); /* Consistent dark theme */
+  background: rgba(50, 75, 50, 0.9);
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
 }
 
+/* Typography */
 h1, h2 {
   margin: 0 0 10px;
-  font-size: 1.5rem;
-  color: #ffffff;
+  font-size: 1.8rem;
+  color: #e3b341;
 }
 
 p, i {
   font-size: 1.2rem;
-  color: #d3d3d3; /* Light gray for better readability */
+  color: #d8e3d5;
 }
 
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-}
-
-nav ul li {
-  margin: 0 15px;
-}
-
+/* Navigation Links */
 nav ul li a {
-  text-decoration: none;
   color: #ffffff;
   font-weight: bold;
   font-size: 1.2rem;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 }
 
 nav ul li a:hover {
-  color: #00ffcc; /* Subtle hover effect */
-}
-.blur-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: inherit; /* Inherit the background image from body */
-  backdrop-filter: blur(8px); /* Apply blur */
-  -webkit-backdrop-filter: blur(8px); /* For Safari */
-  z-index: -1; /* Ensure the blur is behind the content */
+  color: #d18d24;
 }

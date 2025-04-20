@@ -1,37 +1,39 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "soil_monitoring";
+header("Content-Type: text/plain");
 
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Handle both GET and POST
+$nitrogen = isset($_REQUEST['nitrogen']) ? intval($_REQUEST['nitrogen']) : -1;
+$phosphorus = isset($_REQUEST['phosphorus']) ? intval($_REQUEST['phosphorus']) : -1;
+$potassium = isset($_REQUEST['potassium']) ? intval($_REQUEST['potassium']) : -1;
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+echo "Received Data: ";
+echo "Nitrogen: $nitrogen, Phosphorus: $phosphorus, Potassium: $potassium\n";
 
-// Sample values (replace with real sensor data)
-$nitrogen = 90;
-$phosphorous = 50;
-$potassium = 150;
-$moisture = 50;
-$temperature = 25;
+// Only insert if all values are > 0
+if ($nitrogen > 0 && $phosphorus > 0 && $potassium > 0) {
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "soil_monitoring";
 
-// Insert into soil_data
-$sql1 = "INSERT INTO soil_data (nitrogen, phosphorous, potassium, moisture, temperature)VALUES ('$nitrogen', '$phosphorous', '$potassium', '$moisture', '$temperature')";
+    // Create DB connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Database connection failed: " . $conn->connect_error);
+    }
 
-// Insert into soil_data1 (renaming moisture as humidity)
-$sql2 = "INSERT INTO soil_data1 (nitrogen, phosphorus, potassium, humidity, temperature)VALUES ('$nitrogen', '$phosphorous', '$potassium', '$moisture', '$temperature')";
+    // Insert into table
+    $sql = "INSERT INTO sensor_data (nitrogen, phosphorus, potassium)
+            VALUES ('$nitrogen', '$phosphorus', '$potassium')";
 
-// Execute both queries
-if ($conn->query($sql1) === TRUE && $conn->query($sql2) === TRUE) {
-    echo "Data inserted successfully!";
+    if ($conn->query($sql) === TRUE) {
+        echo "Data inserted successfully";
+    } else {
+        echo "Error inserting data: " . $conn->error;
+    }
+
+    $conn->close();
 } else {
-    echo "Error: " . $conn->error;
+    echo "Invalid data. Skipping insert.";
 }
-
-// Close connection
-$conn->close();
 ?>

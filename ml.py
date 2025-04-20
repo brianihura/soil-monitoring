@@ -1,42 +1,42 @@
 import joblib
-import numpy as np
+import pandas as pd
 import pymysql
 
-# Step 1: Load the saved model and preprocessing tools
-model = joblib.load("crop_model.pkl")            # Load trained model
-label_encoder = joblib.load("label_encoder.pkl") # Load label encoder
-scaler = joblib.load("scaler.pkl")               # Load scaler
+# Load model and preprocessing tools
+model = joblib.load("crop_model.pkl")
+label_encoder = joblib.load("label_encoder.pkl")
+scaler = joblib.load("scaler.pkl")
 
-# Step 2: Connect to MySQL Database
+# Connect to MySQL
 db = pymysql.connect(host="localhost", user="root", password="", database="soil_monitoring")
 cursor = db.cursor()
 
-# Step 3: Fetch Latest Soil Data
-cursor.execute("SELECT nitrogen, phosphorus, potassium, humidity, temperature FROM soil_data1 ORDER BY id DESC LIMIT 1")
+# Fetch latest NPK data from sensor_data
+cursor.execute("SELECT nitrogen, phosphorus, potassium FROM sensor_data ORDER BY id DESC LIMIT 1")
 row = cursor.fetchone()
 
 if row:
-    nitrogen, phosphorus, potassium, humidity, temperature = row  # Assign values
+    nitrogen, phosphorus, potassium = row
 
-    # Step 4: Default Values for Missing Features
-    pH = 6.5  # Default pH level
-    rainfall = 200.0  # Default rainfall value
+    # Prepare data with feature names used in training
+    input_data = pd.DataFrame([{
+        'N': nitrogen,
+        'P': phosphorus,
+        'K': potassium
+    }])
 
-    # Step 5: Prepare Input for Model
-    features = np.array([[nitrogen, phosphorus, potassium, temperature, humidity, pH, rainfall]])  # Use 7 features
-    features_scaled = scaler.transform(features)  # Scale the features
+    # Scale and predict
+    input_scaled = scaler.transform(input_data)
+    predicted_index = model.predict(input_scaled)[0]
+    predicted_crop = label_encoder.inverse_transform([predicted_index])[0]
 
-    # Step 6: Predict Crop
-    predicted_crop_index = model.predict(features_scaled)[0]
-    predicted_crop = label_encoder.inverse_transform([predicted_crop_index])[0]
-
-    # Step 7: Save result to file
-    with open("output.txt", "w") as file:
-        file.write(predicted_crop)
+    # Save result to file
+    with open("output.txt", "w") as f:
+        f.write(predicted_crop)
 else:
-    with open("output.txt", "w") as file:
-        file.write("Error: No soil data found!")
+    with open("output.txt", "w") as f:
+        f.write("Error: No data found!")
 
-# Step 8: Close Database Connection
+# Close DB
 cursor.close()
 db.close()

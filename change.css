@@ -1,136 +1,115 @@
 body {
-    background-image: linear-gradient(rgba(5, 2, 8, 0.3),rgba(24, 34, 30, 0.8)), url(3.jpg);
-    background-size: cover;
-    background-position: center;
-    margin: 0;
-    font-family: 'Arial', sans-serif; /* Clean font */
-    color: #ffffff; /* White text for contrast */
-  }
-  
-  header {
-    background-color:  rgba(96, 190, 143, 0.9); /* Dark color with slight transparency */
-    padding: 10px 20px;
-    border-bottom: 4px solid rgba(255, 255, 255, 0.3); /* Subtle highlight */
-    display: flex; /* Use flexbox for header layout */
-    justify-content: space-between; /* Distribute space between the logo and nav */
-    align-items: center; /* Vertically align items */
-    font-size: 1.5rem;
-    color: #ffffff;
-    position: sticky; /* Keeps the header fixed at the top */
-    top: 0;
-    z-index: 10; /* Ensures the header stays above other content */
-    width: 100%; /* Ensure the header takes up the full width */
-  }
-  
-  header .logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  header .logo img {
-    width: 50px; /* Adjust logo size */
-    height: auto;
-  }
-  
-  header nav ul {
-    list-style-type: none; /* Remove default list style */
-    display: flex; /* Align list items horizontally */
-    margin: 0;
-    padding: 0;
-  }
-  
-  header nav ul li {
-    margin-left: 20px; /* Space between the list items */
-  }
-  
-  header a {
-    color: #f4f4f9; /* Light link color */
-    text-decoration: none; /* Remove underline from links */
-  }
-  
-  header a:hover {
-    color: aqua; /* Highlight links on hover */
-    text-decoration: underline; /* Add underline on hover */
-  }
-  
-  .mainview {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Set three columns */
-    gap: 70px; /* Increase gap between the items */
-    padding: 20px;
-    margin-top: 80px; /* Increase top margin */
-    backdrop-filter: 8px;
-  }
-  
-  .temparature, .moisture, .npk {
-    background-color: rgba(255, 255, 255, 0.9); /* Consistent dark theme */
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    height: 40vh;
-    width: 80%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
-  }
-  
-  .npk {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .potassium, .phosphorous, .nitrogen {
-    height: 10vh;
-    width: 100%;
-    margin: 10px 0;
-    background-color: rgba(228, 223, 223, 0.9); /* Consistent dark theme */
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  }
-  
-  h1, h2 {
-    margin: 0 0 10px;
-    font-size: 1.5rem;
-    color:black;
-  }
-  
-  p, i {
-    font-size: 1.2rem;
-    color: #8b8686; /* Light gray for better readability */
-  }
-  
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  nav ul li {
-    margin: 0 15px;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-  }
-  
-  nav ul li a:hover {
-    color: #00ffcc; /* Subtle hover effect */
-  }
-  .blur-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: inherit; /* Inherit the background image from body */
-    backdrop-filter: blur(8px); /* Apply blur */
-    -webkit-backdrop-filter: blur(8px); /* For Safari */
-    z-index: -1; /* Ensure the blur is behind the content */
-  }
+  background: linear-gradient(135deg, #0b0f11, #101820, #0d141b); /* Dark professional gradient */
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+}
+
+header {
+  background: linear-gradient(90deg, #161b22, #1e252d);
+  padding: 15px 25px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+header .logo img {
+  width: 50px;
+  height: auto;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li {
+  margin-left: 20px;
+}
+
+header a {
+  color: #b6ff40;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+header a:hover {
+  color: #75ff4f;
+  text-decoration: underline;
+}
+
+.mainview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  padding: 40px;
+  margin-top: 80px;
+}
+
+.temparature, .moisture, .npk {
+  background: linear-gradient(145deg, #11181e, #1b242c);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  height: 40vh;
+  width: 80%;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease-in-out;
+  color: #ffffff;
+}
+
+.temparature:hover, .moisture:hover, .npk:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(145deg, #1e2b32, #27343c);
+}
+
+.npk {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.potassium, .phosphorous, .nitrogen {
+  height: 10vh;
+  width: 100%;
+  margin: 10px 0;
+  background: linear-gradient(90deg, #141e24, #1c2b33);
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+h1, h2 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  color: #b6ff40;
+}
+
+p, i {
+  font-size: 1.2rem;
+  color: #d8e3d5;
+}
+
+nav ul li a {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #75ff4f;
+}

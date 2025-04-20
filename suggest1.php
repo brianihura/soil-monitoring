@@ -11,14 +11,14 @@
     <div class="navLinks">
         <nav>
             <ul>
-                <li><a href="client.php">Home</a></li>
-                <li><a href="graph.php">Graph</a></li>
-                <li><a href="soilhealth.php">Soil Health</a></li>
+            <li><a href="client.php">Home</a></li>
+                    <li><a href="graph.php">Graph</a></li>
+                    <li><a href="suggest1.php">Suggest</a></li>
+                    <li><a href="soilhealth.php">soil Health</a></li>
             </ul>
         </nav>
     </div>
 </header>
-
 <div class="container">
 <?php
 $servername = "localhost";
@@ -33,8 +33,8 @@ if ($conn->connect_error) {
 }
 
 // Fetch latest soil data
-$sensor_sql = "SELECT nitrogen, phosphorous, potassium, moisture, temperature 
-               FROM soil_data 
+$sensor_sql = "SELECT nitrogen, phosphorus, potassium 
+               FROM sensor_data 
                ORDER BY id DESC 
                LIMIT 1";
 $sensor_result = $conn->query($sensor_sql);
@@ -47,18 +47,14 @@ if ($sensor_result->num_rows > 0) {
 
 // Prepare data for ML script
 $nitrogen = $sensor_data['nitrogen'];
-$phosphorous = $sensor_data['phosphorous'];
+$phosphorus = $sensor_data['phosphorus'];
 $potassium = $sensor_data['potassium'];
-$moisture = $sensor_data['moisture'];
-$temperature = $sensor_data['temperature'];
 
 // Convert data to JSON format for Python script
 $data = json_encode([
     "nitrogen" => $nitrogen,
-    "phosphorous" => $phosphorous,
+    "phosphorus" => $phosphorus,
     "potassium" => $potassium,
-    "moisture" => $moisture,
-    "temperature" => $temperature
 ]);
 
 // Save data to a temporary file for the Python script
@@ -85,10 +81,8 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         if (
             $nitrogen >= $row['nitrogen_min'] && $nitrogen <= $row['nitrogen_max'] &&
-            $phosphorous >= $row['phosphorus_min'] && $phosphorous <= $row['phosphorus_max'] &&
-            $potassium >= $row['potassium_min'] && $potassium <= $row['potassium_max'] &&
-            $moisture >= $row['moisture_min'] && $moisture <= $row['moisture_max'] &&
-            $temperature >= $row['temperature_min'] && $temperature <= $row['temperature_max']
+            $phosphorus >= $row['phosphorus_min'] && $phosphorus <= $row['phosphorus_max'] &&
+            $potassium >= $row['potassium_min'] && $potassium <= $row['potassium_max'] 
         ) {
             $suitable_crops[] = $row['crop_name'];
         }

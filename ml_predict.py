@@ -1,37 +1,45 @@
-import sys
 import joblib
-import numpy as np
+import pandas as pd
+from numpy import array
+import pymysql
 
-# Load trained model and preprocessing tools
+# Load model and preprocessing tools
 model = joblib.load("crop_model.pkl")
 label_encoder = joblib.load("label_encoder.pkl")
 scaler = joblib.load("scaler.pkl")
 
-# Get input values from PHP script
-try:
-    nitrogen = float(sys.argv[1])
-    phosphorus = float(sys.argv[2])
-    potassium = float(sys.argv[3])
-    moisture = float(sys.argv[4])  # In database, it's called moisture
-    temperature = float(sys.argv[5])
+# Connect to MySQL
+db = pymysql.connect(host="localhost", user="root", password="", database="soil_monitoring")
+cursor = db.cursor()
 
-    # Rename moisture to humidity for model compatibility
-    humidity = moisture  # Model expects humidity, but we store it as moisture
+# Fetch latest NPK data from sensor_data
+cursor.execute("SELECT nitrogen, phosphorus, potassium FROM sensor_data ORDER BY id DESC LIMIT 1")
+row = cursor.fetchone()
 
-    # Create feature array (Ensure correct order for model)
-    features = np.array([[nitrogen, phosphorus, potassium, temperature, humidity]])
+if row:
+    nitrogen, phosphorus, potassium = row
 
-    # Scale the features before prediction
-    features_scaled = scaler.transform(features)
+    # Prepare data using correct feature names (used during training)
+    input_data = pd.DataFrame([{
+        'N': nitrogen,
+        'P': phosphorus,
+        'K': potassium
+    }])
+
+    # Scale input
+    input_scaled = scaler.transform(input_data)
 
     # Predict crop
-    predicted_crop_index = model.predict(features_scaled)[0]
-    predicted_crop = label_encoder.inverse_transform([predicted_crop_index])[0]
+    predicted_index = model.predict(input_scaled)[0]
+    predicted_crop = label_encoder.inverse_transform([predicted_index])[0]
 
-    # Print the predicted crop (so PHP can read it)
-    print(predicted_crop)
+    # Save result to file
+    with open("output.txt", "w") as f:
+        f.write(predicted_crop)
+else:
+    with open("output.txt", "w") as f:
+        f.write("Error: No data found!")
 
-except IndexError:
-    print("Error: Missing input values")
-except ValueError:
-    print("Error: Invalid input format")
+# Close DB
+cursor.close()
+db.close()

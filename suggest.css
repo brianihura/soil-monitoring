@@ -1,0 +1,194 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(rgba(8, 14, 10, 0.8), rgba(24, 34, 30, 0.8)), url('3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, #1c3d1c, #2e5a2e); /* Deep green */
+    padding: 25px 35px;
+    border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.8rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+}
+
+/* Navigation */
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 25px;
+}
+
+header a {
+    color: #e3b341; /* Golden yellow */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    font-size: 1.3rem;
+}
+
+header a:hover {
+    color: #d18d24;
+    text-decoration: underline;
+}
+
+/* Main Container */
+.container {
+    margin-top: 100px;
+    width: 1000px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Headings */
+h1 {
+    font-size: 32px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Paragraphs */
+p {
+    font-size: 20px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* Success & Error Messages */
+p.success {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+p.error {
+    color: #F44336;
+    font-weight: bold;
+}
+
+/* Table Styling */
+.table-container {
+    width: 100%;
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+}
+
+th {
+    background-color: #4CAF50;
+    color: black;
+}
+
+td {
+    background-color: #ffffff;
+}
+
+td:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Ordered List */
+ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+    font-size: 18px;
+    color: #555;
+}
+
+/* Machine Learning Prediction Box */
+.machine {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.machine:hover {
+    transform: scale(1.03);
+}
+
+.machine h2 {
+    color: #4CAF50;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* Prediction Result */
+.result {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    background: #f4f4f4;
+    padding: 12px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .machine {
+        width: 90%;
+        padding: 15px;
+    }
+    
+    .result {
+        font-size: 18px;
+        padding: 10px;
+    }
+}
